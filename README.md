@@ -3,6 +3,8 @@ Change your discord status, with delay
 
 ---
 
+![demo](./images/demo.png)
+
 ## ❗️ | Installation
 
 !! You need python installed to use this application !!
