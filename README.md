@@ -14,7 +14,7 @@ python3 -m pip install -r requirements.txt
 
 2. Start the application
 ```
-python3 main.py
+./start.bat
 ```
 
 ## 📜 | Config
