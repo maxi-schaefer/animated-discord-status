@@ -13,7 +13,7 @@ banner = f"""{Fore.LIGHTRED_EX}
         \     \___|  |  /\___ \  |  | (  <_> )  Y Y  \/        \|  |  / __ \|  | |  |  /\___ \ 
          \______  /____//____  > |__|  \____/|__|_|  /_______  /|__| (____  /__| |____//____  >
                 \/           \/                    \/        \/           \/                \/ 
-        >> Made by gokiimax                                              >> github.com/gokiimax
+        >> Made by max                                              >> github.com/maxi-schaefer
 {Fore.RESET}────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{Fore.LIGHTRED_EX}
 
                 [1] Start                                                [2] Exit 
@@ -23,26 +23,34 @@ banner = f"""{Fore.LIGHTRED_EX}
 """
 
 authorization = {
-    'Authorization': get_path("Token")
+    'Authorization': get_path("token")
 }
 
-def main():
+def getCurrentTimeString():
+    t = time.localtime()
+    currentTime = time.strftime("%H:%M:%S", t)
+    return currentTime
 
+def clear():
     if os.name == "nt":
         os.system("cls")
     else:
         os.system("clear")
 
+def main():
+
+    clear()
+
     print(banner)
     command = input(f"{Fore.LIGHTRED_EX}Choose: {Fore.RESET}")
 
     if command == "1":
-        print("Custom Status started...")
         while True:
-            for i in range(3):
-                print(f"Status changed to: {get_path(f'Emoji{i + 1}')} | {get_path(f'Status{i + 1}')} | Time between change: {str(get_path('TimeBetweenChange'))}s")
-                requests.patch("https://discord.com/api/v7/users/@me/settings", headers=authorization, json={"custom_status": {"text": get_path(f"Status{i + 1}"), "emoji_name": get_path(f"Emoji{i + 1}")}})
-                time.sleep(get_path("TimeBetweenChange"))
+            for status in get_path("statuses"):
+                print(f"[{getCurrentTimeString()}] Status changed to: {status['emoji']} {status['status']}")
+                requests.patch("https://discord.com/api/v7/users/@me/settings", headers=authorization, json={"custom_status": {"text": status['status'], "emoji_name": status['emoji']}})
+                print(f"[{getCurrentTimeString()}] 😴 Sleeping for {get_path('timeBetweenChange')} seconds!")
+                time.sleep(get_path("timeBetweenChange"))
     else:
         exit(-1)
 

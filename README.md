@@ -22,15 +22,17 @@ python3 -m pip install -r requirements.txt
 ## 📜 | Config
 ```json
 {
-    "Token": "YOUR TOKEN HERE",
-    "Status1": "github.com/gokiimax",
-    "Emoji1": "🖥",
-
-    "Status2": "twitter.com/gokimax_x",
-    "Emoji2": "💰",
-
-    "Status3": "instagram.com/maxii.x6",
-    "Emoji3": "🎭",
-    "TimeBetweenChange": 10
+    "token": "YOUR_TOKEN_HERE",
+    "statuses": [
+        {
+            "status": "I ♥️ coding",
+            "emoji": "💻"
+        },
+        {
+            "status": "I ♥️ coding",
+            "emoji": "⚒️"
+        }
+    ],
+    "timeBetweenChange": 20
 }
 ```
